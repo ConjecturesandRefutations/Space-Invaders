@@ -9,7 +9,7 @@ html, body, .opening-section,.end-game {
     background-color: black;
 }
 
-.audio:hover,.instruction:hover,#volume-icon:hover,#start-button:hover,.settings:hover{
+#start-button:hover,#done:hover{
     background-color: black;
 }
 
@@ -280,6 +280,16 @@ html, body, .opening-section,.end-game {
     z-index: 0;
 }
 
+#done{
+    position: relative;
+    left: 50%;
+    top: 85%;
+    transform: translate(-50%);
+    cursor: pointer;
+    max-width: 250px;
+    margin-top: 5px;
+}
+
 @media(max-width: 1205px){
     .selections{
         position: absolute;
@@ -304,6 +314,9 @@ html, body, .opening-section,.end-game {
     }
     .audio,#settings,#instructions  {
         display: none;
+    }
+    .back{
+        right: 10px;
     }
     #volume-icon{
       font-size: 50px;
@@ -416,13 +429,9 @@ html, body, .opening-section,.end-game {
     }
     #volume-icon{
     font-size: 40px;
-    margin-top: 10px;
   }
   #setting-icon{
     font-size: 40px;
-  }
-  .settings,.instruction{
-    top: 10px;
   }
   #instruction-icon{
     font-size: 40px;
