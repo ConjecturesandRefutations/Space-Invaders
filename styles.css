@@ -290,6 +290,14 @@ html, body, .opening-section,.end-game {
     margin-top: 5px;
 }
 
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    transform-origin: top left;
+}
+
 @media(max-width: 1205px){
     .selections{
         position: absolute;
@@ -302,6 +310,17 @@ html, body, .opening-section,.end-game {
     }
     #setup{
         display: none;
+    }
+}
+
+@media(max-width: 912px){
+    #canvas {
+        width: 100vh; 
+        height: 100vw; 
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg); /* Rotate 90 degrees */
+        transform-origin: center center;
     }
 }
 
