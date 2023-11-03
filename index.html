@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <section class="opening-section">
+
+        <img id="title" src="images/Space-Invaders.png"/>
+        <img id="title-small" src="images/title-small.png"/>
+        <img src="images/Lift-Off.png" id="start-button" alt="lift-off">
+
+        <article class="play-music">
+            <img class="audio" src="./images/openingmusic.png"/>&ensp;<i class="fas fa-volume-mute" aria-hidden="true" id="volume-icon"></i>
+        </article>
+
+        <article class="settings">
+            <img src="./images/settings.png" alt="settings" id="settings">&ensp;<i class="fa fa-cog" aria-hidden="true" id="setting-icon"></i>
+        </article>
+
+        <article class="instruction">
+                <img src="./images/instructions.png" alt="instructions" id="instructions">&ensp;<i class="fa fa-info-circle" aria-hidden="true" id="instruction-icon"></i>
+        </article>
+
+    </section>
+
+    <!-- SETUP SECTION -->
+    <!-- <section class="setup-section">
+        <img src="images/Setup.png" id="setup" alt="setup">
+        <div class="selections">
+            <div class="locations">
+                <img src="images/select-location.png" id="select-location" alt="launch">
+                <div class="locationImages">
+                    <label for="locationOne">
+                        <input type="radio" name="location" value="locationOne" class="location-checkbox locationOne" id="locationOne" onclick="handleLocationChange()" checked>
+                        <img src="images/opening.jpg" alt="location" class="locationOneImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                    <label for="locationTwo">
+                        <input type="radio" name="location" value="locationTwo" class="location-checkbox locationTwo" id="locationTwo" onclick="handleLocationChange()">
+                        <img src="images/game.jpg" alt="location" class="locationTwoImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                    <label for="locationThree">
+                        <input type="radio" name="location" value="locationThree" class="location-checkbox locationThree" id="locationThree" onclick="handleLocationChange()">
+                        <img src="images/location.jpg" alt="location" class="locationThreeImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="ships">
+                <img src="images/select-ship.png" id="select-ship" alt="launch">
+                <div class="shipImages">
+                    <label for="spaceshipOne">
+                        <input type="radio" name="ship" value="shipOne" class="ship-checkbox spaceshipOne" id="spaceshipOne" onclick="handleShipChange(event)" checked>
+                        <img src="images/spaceship.png" alt="spaceship spaceshipOne" class="spaceshipOneImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                    <label for="spaceshipTwo">
+                        <input type="radio" name="ship" value="shipTwo" class="ship-checkbox spaceshipTwo" id="spaceshipTwo" onclick="handleShipChange(event)">
+                        <img src="images/blueSpaceship.png" alt="spaceship" class="spaceshipTwoImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                    <label for="spaceshipThree">
+                        <input type="radio" name="ship" value="shipThree" class="ship-checkbox spaceshipThree" id="spaceshipThree" onclick="handleShipChange(event)">
+                        <img src="images/redSpaceship.png" alt="spaceship" class="spaceshipThreeImg"/>
+                        <div class="checkmark"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <img src="images/Launch.png" id="start-button-two" alt="launch">
+    </section> -->
+
+    <!-- <section id="canvas-containter">
+        
+        <canvas id="canvas" width="1400" height="700"></canvas> 
+
+        <article class="utility-buttons">
+            <div class="audio-controls">
+                <button id="mute-button"><img id="mute" src="./images/mute.png"/></button>
+                <button id="next-button"><img id="skip" src="./images/skip.png"/></button>
+            </div>
+            <button class='homepage'><img id="homepageImg" src="./images/homepage.png"/></button>  
+        </article>
+    </section>
+
+    <section class="score">
+        <img src="./images/score.png" alt="score" id="score">&ensp;<span id="score-value">0</span> 
+    </section>
+
+        <div class="circle-container">
+                <button class="arrow-button up" id="up-button">↑</button>
+                <button class="arrow-button down" id="down-button">↓</button>
+                <button class="arrow-button left" id="left-button">←</button>
+                <button class="arrow-button right" id="right-button">→</button>
+                <div class="shoot-container">
+                    <button class="arrow-button" id="shoot"><i class="fa fa-rocket" aria-hidden="true"></i></button>
+                </div>
+        </div>
+
+        <section class="end-game">
+            <img src="./images/GameOver.png" alt="game over" id="GameOver">
+            <img src="./images/Restart.png" alt="restart" id="restart">
+        </section>
+
+        -->
+
+        
+        <section class="instruction-section">
+            
+            <button class='back'><img src="images/back.png" alt="back" id="back"></button> 
+            <img src="images/instructions.png" alt="instructions" id="instruction-title">
+            <article class="instruction-text">
+                <h3>Desktop/Laptop Controls</h3>
+                <p>Use your keyboard's arrow keys to move the spaceship. Use the spacebar to shoot missiles.</p>
+                <h3>Mobile/Tablet Controls</h3>
+                <p>Use the on-screen arrows to move the spaceship. Press the rocket icon to shoot missiles.</p>
+            </article>
+
+        </section> 
+
+        <script src="js/index.js"></script>
+        <script src="js/audio.js"></script>
+</body>
+</html>

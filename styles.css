@@ -1,0 +1,471 @@
+*{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+}
+
+html, body, .opening-section,.end-game {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.audio:hover,.instruction:hover,#volume-icon:hover,#start-button:hover,.settings:hover{
+    background-color: black;
+}
+
+#title,#GameOver{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%);
+    width: 700px;
+}
+
+#title-small{
+    display: none;
+}
+
+.instruction-section{
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background-image: url('images/instruction-bg.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+#setup,#instruction-title{
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%);
+    width: 500px;
+}
+
+#start-button{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%);
+    cursor: pointer;
+    max-width: 350px;
+}
+
+.audio{
+    height: 15px;
+    margin-top: 21px;
+    margin-left: 10px;
+}
+
+.instruction{
+    cursor: pointer;
+    position: absolute;
+    padding: none;
+    display: flex;
+    flex-direction: row;
+    top: 21px;
+    right: 10px;
+}
+
+#instructions{
+    height: 15px;
+}
+
+.settings{
+    cursor: pointer;
+    position: absolute;
+    padding: none;
+    display: flex;
+    flex-direction: row;
+    top: 21px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  #settings{
+    height: 15px;
+}
+
+.instruction-text{
+    top: 25%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.opening-section{
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background-image: url('images/opening.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
+}
+
+.play-music{
+    cursor: pointer;
+    position: absolute;
+    padding: none;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #volume-icon{margin-top: 20px;}
+
+  .audio-controls{
+    position: absolute;
+    left: 50px;
+}
+
+#mute-button{
+    text-decoration: none;
+    margin-bottom: 5px;
+    background-color: transparent;
+    padding: none;
+    cursor: pointer;
+}
+
+#mute{
+    max-width: 75px;
+    margin-top: 5px;
+}
+
+#play{
+    max-width: 70px;
+    margin-top: 5px;
+}
+
+.homepage,.back{
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 5px;
+    color: white;
+    background-color: transparent;
+    padding: none;
+    font-size: large;
+  }
+
+  .back{
+    margin-top: 21px;
+  }
+
+  #homepageImg{
+    max-width: 150px;
+    margin-top: 5px;
+  }
+
+  #back{
+    max-width: 100px;
+    margin-top: 5px;
+  }
+
+  .setup-section{
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    background-image: url('images/setup.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
+  }
+
+  .selections{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+}
+
+#select-location{
+    max-width: 500px;   
+    max-height: 50px; 
+}
+#select-ship{
+    max-width: 400px;
+    max-height: 50px;    
+}
+
+.locationImages{
+    display: flex;
+    flex-direction: row;
+}
+
+.locationOneImg,.locationTwoImg,.locationThreeImg{
+    width: 200px;
+    height: 170px;
+    cursor: pointer;
+}
+
+.spaceshipOneImg,.spaceshipTwoImg,.spaceshipThreeImg{
+    max-width: 100px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.shipImages{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.location-checkbox,
+.ship-checkbox {
+    display: none;
+}
+
+.checkmark {
+    width: 20px; 
+    height: 20px; 
+    background-color: lightgreen;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+/* Show the checkmark when the checkbox is checked */
+.location-checkbox:checked + .locationOneImg + .checkmark,
+.location-checkbox:checked + .locationTwoImg + .checkmark,
+.location-checkbox:checked + .locationThreeImg + .checkmark,
+.ship-checkbox:checked + .spaceshipOneImg + .checkmark,
+.ship-checkbox:checked + .spaceshipTwoImg + .checkmark,
+.ship-checkbox:checked + .spaceshipThreeImg + .checkmark {
+    display: block;
+}
+
+.score{
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    z-index: 5;
+}
+
+#score{
+    max-width: 150px;
+    margin-right: 5px;
+}
+
+#score-value{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.end-game {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0; /* Fill the entire viewport */
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url('images/EndGame.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: 0;
+}
+
+@media(max-width: 1205px){
+    .selections{
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    #setup{
+        display: none;
+    }
+}
+
+@media(max-width:750px){
+    #title{
+        max-width: 500px;
+    }
+    #start-button{
+        max-width: 250px;
+    }
+    .audio,#settings,#instructions  {
+        display: none;
+    }
+    #volume-icon{
+      font-size: 50px;
+      margin-left: 10px;
+    }
+    #setting-icon{
+        font-size: 50px;
+    }
+    #instruction-icon{
+      font-size: 50px;
+    }
+}
+
+@media(max-width:610px){
+    #select-location{
+        max-width: 300px;
+    }
+    #select-ship{
+        max-width: 250px;
+    }
+    .locationOneImg,.locationTwoImg,.locationThreeImg{
+        width: 150px;
+        height: 120px;
+    }
+    .spaceshipOneImg,.spaceshipTwoImg,.spaceshipThreeImg{
+        max-width: 70px;
+        height: 100px;
+    }
+      .back{
+        margin-top: 15px;
+      }
+  }
+
+  @media(max-width:600px){
+    #score{
+        max-width: 100px;
+    }
+    #score-value{
+        font-size: 30px;
+    }
+  }
+
+  @media(max-width:555px){
+    #title{
+        display: none;
+    }
+    #title-small{
+        display: block;
+        max-width: 300px;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%);
+    }
+}
+
+  @media(max-width:500px){
+
+    #setup,#GameOver,#instruction-title{
+        max-width: 350px;
+    }
+    #start-button{
+        max-width: 200px;
+    }
+    #restart{
+        max-width: 250px;
+    }
+    .homepage{
+        right: 20px;
+    }
+}
+
+@media(max-width:450px){
+    #volume-icon{
+      font-size: 45px;
+    }
+    .locationImages{
+        flex-wrap: wrap;
+    }
+    }
+
+@media(max-width:400px){
+    #setup,#GameOver,#instruction-title{
+        max-width: 300px;
+    }
+    #start-button{
+        max-width: 200px;
+    }
+    #restart{
+        max-width: 250px;
+    }
+    .score{
+        bottom: 50%;
+        transform: translate(0,50%);
+    }
+}
+
+@media(max-width:365px){
+    .homepage{
+        position: absolute;
+        left: 20px;
+        top: 85px;
+        max-width: 160px;
+    }
+  }
+
+@media(max-width:330px){
+    #title-small{
+        max-width: 280px;
+    }
+    #volume-icon{
+    font-size: 40px;
+    margin-top: 10px;
+  }
+  #setting-icon{
+    font-size: 40px;
+  }
+  .settings,.instruction{
+    top: 10px;
+  }
+  #instruction-icon{
+    font-size: 40px;
+  }
+    #setup,#GameOver,#instruction-title{
+    max-width: 250px;
+}
+#start-button,#restart{
+    max-width: 200px;
+}
+}
+
+@media(max-width:300px){
+    #title-small{
+        max-width: 250px;
+    }
+    .homepage{
+        left: 5px;
+    }
+    .selections{
+        left: 0;
+        transform: translate(0);
+      }
+      .score{
+        left: 5px;
+    }
+}
+
+@media(max-width:280px){
+    #title-small{
+        max-width: 230px;
+    }
+    #setup,#GameOver,#instruction-title{
+        max-width: 230px;
+    }
+    #start-button,#start-button-two,#restart{
+        max-width: 200px;
+    }
+    .locationOneImg,.locationTwoImg,.locationThreeImg{
+        width: 130px;
+        height: 100px;
+    }
+    #select-location{
+        width: 270px;
+    }
+}
