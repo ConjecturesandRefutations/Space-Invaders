@@ -2,9 +2,9 @@ class Obstacle {
     constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.width = Math.floor(Math.random() * (150 - 30 + 1)) + 30; // Random width between 30 and 150
-        this.height = Math.floor(Math.random() * (150 - 30 + 1)) + 30; // Random height between 30 and 150
-        this.img = './images/asteroid.png';
+        this.width = 30
+        this.height = 30
+        this.img = './images/alien.png';
         this.destroyed = false;
         this.wasHit = false; // Track if the obstacle was hit
         this.explosionFrames = 10; // Number of frames to display the explosion

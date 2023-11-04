@@ -117,13 +117,12 @@ for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
     currentGame.rockets.splice(i, 1);
   }
 }
-
   
 if (obstaclesFrequency % 60 === 1) {
   // Generate a new obstacle at the top of the canvas
-  const randomObstacleWidth = Math.floor(Math.random() * (150 - 30 + 1)) + 30;
-  const randomObstacleHeight = Math.floor(Math.random() * (150 - 30 + 1)) + 30;
-  const randomObstacleX = Math.floor(Math.random() * (canvas.width - randomObstacleWidth));
+  const randomObstacleWidth = 30
+  const randomObstacleHeight = 30
+  const randomObstacleX = 0;
   const randomObstacleY = -randomObstacleHeight;
 
   const newObstacle = new Obstacle(
@@ -133,6 +132,7 @@ if (obstaclesFrequency % 60 === 1) {
     randomObstacleHeight
   );
 
+  newObstacle.horizontalSpeed = 3; // Initial horizontal speed
   currentGame.obstacles.push(newObstacle);
 }
 
@@ -147,14 +147,20 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
   }
 
   // Move obstacles downwards
-  obstacle.y += 3;
+  obstacle.y += 0.2;
+
+  // Move obstacles horizontally with a reverse direction when hitting the canvas boundaries
+  obstacle.x += obstacle.horizontalSpeed;
+  if (obstacle.x + obstacle.width >= canvas.width || obstacle.x <= 0) {
+    obstacle.horizontalSpeed *= -1; // Reverse the horizontal direction
+  }
 
   // Logic for removing obstacles
   if (obstacle.y >= canvas.height) {
     currentGame.obstacles.splice(i, 1); // remove that obstacle from the array
   }
 }
-
+console.log(currentGame.obstacles.length)
   // Continue the animation loop
   animationID = requestAnimationFrame(updateCanvas);
 
