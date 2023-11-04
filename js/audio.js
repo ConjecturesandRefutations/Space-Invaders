@@ -2,7 +2,7 @@
 const opening = new Audio('./audio/opening.mp3');
 
 //sound effects
-/* const explosion = new Audio('./audio/asteroid.mp3'); */
+const explosion = new Audio('./audio/asteroid.mp3'); 
 const laser = new Audio('./audio/laser.mp3'); 
 
 let openingAudioPlaying = false;

@@ -2,6 +2,7 @@
 let background = new Image();
 let backgroundX = 0;
 let currentShip;
+let obstaclesFrequency = 0; //Logic for generating obstacles
 
 // Opening Section
 const openingSection = document.querySelector('.opening-section');
@@ -85,6 +86,7 @@ function updateCanvas() {
   ctx.drawImage(background, backgroundX + canvas.width, 0, canvas.width, canvas.height);
 
   currentShip.drawShip(); // redraw the ship at its current position
+  obstaclesFrequency++;
 
 // Update and draw rockets
 for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
@@ -94,11 +96,63 @@ for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
     rocket.update();
     rocket.draw();
 
+    // Check for collisions with obstacles
+    for (let j = currentGame.obstacles.length - 1; j >= 0; j--) {
+      const obstacle = currentGame.obstacles[j];
+
+      if (obstacle.collidesWith(rocket.x, rocket.y)) {
+        if (!obstacle.wasHit) { // Check if the obstacle was not hit before
+          obstacle.destroy();
+          explosion.play();
+          currentGame.score++;
+          obstacle.wasHit = true; // Mark the obstacle as hit
+        }
+
+        // Remove the rocket from the array
+        currentGame.rockets.splice(i, 1);
+      }
+    }
   } else {
     // Remove dead rockets from the array
     currentGame.rockets.splice(i, 1);
   }
+}
 
+  
+if (obstaclesFrequency % 60 === 1) {
+  // Generate a new obstacle at the top of the canvas
+  const randomObstacleWidth = Math.floor(Math.random() * (150 - 30 + 1)) + 30;
+  const randomObstacleHeight = Math.floor(Math.random() * (150 - 30 + 1)) + 30;
+  const randomObstacleX = Math.floor(Math.random() * (canvas.width - randomObstacleWidth));
+  const randomObstacleY = -randomObstacleHeight;
+
+  const newObstacle = new Obstacle(
+    randomObstacleX,
+    randomObstacleY,
+    randomObstacleWidth,
+    randomObstacleHeight
+  );
+
+  currentGame.obstacles.push(newObstacle);
+}
+
+for (let i = 0; i < currentGame.obstacles.length; i++) {
+  const obstacle = currentGame.obstacles[i];
+
+  if (obstacle.wasHit && obstacle.currentExplosionFrame >= obstacle.explosionFrames) {
+    // Remove obstacles after the explosion animation is finished
+    currentGame.obstacles.splice(i, 1);
+  } else {
+    obstacle.drawObstacle();
+  }
+
+  // Move obstacles downwards
+  obstacle.y += 3;
+
+  // Logic for removing obstacles
+  if (obstacle.y >= canvas.height) {
+    currentGame.obstacles.splice(i, 1); // remove that obstacle from the array
+  }
 }
 
   // Continue the animation loop
