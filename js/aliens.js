@@ -1,49 +1,66 @@
 class Obstacle {
-    constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.width = 30
-        this.height = 30
-        this.img = './images/alien.png';
-        this.destroyed = false;
-        this.wasHit = false; // Track if the obstacle was hit
-        this.explosionFrames = 10; // Number of frames to display the explosion
-        this.currentExplosionFrame = 0; // Current explosion frame
-        this.explosionImage = new Image();
-        this.explosionImage.src = './images/explosion.png';
-    }
+  constructor(x, y, width, height) {
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
 
-    drawObstacle() {
+      // Array of alien image paths
+      this.alienImages = [
+          './images/alienOne.png',
+          './images/alienTwo.png',
+          './images/alienThree.png',
+          './images/alienFour.png',
+          './images/alienFive.png',
+      ];
+
+      // Randomly select an alien image path
+      this.img = this.randomAlienImage();
+
+      this.destroyed = false;
+      this.wasHit = false;
+      this.explosionFrames = 10;
+      this.currentExplosionFrame = 0;
+      this.explosionImage = new Image();
+      this.explosionImage.src = './images/explosion.png';
+  }
+
+  // Helper function to select a random alien image
+  randomAlienImage() {
+      const randomIndex = Math.floor(Math.random() * this.alienImages.length);
+      return this.alienImages[randomIndex];
+  }
+
+  drawObstacle() {
       if (this.wasHit && this.currentExplosionFrame < this.explosionFrames) {
-        // Display the explosion image
-        ctx.drawImage(
-          this.explosionImage,
-          this.x,
-          this.y,
-          this.width,
-          this.height
-        );
-        this.currentExplosionFrame++;
+          // Display the explosion image
+          ctx.drawImage(
+              this.explosionImage,
+              this.x,
+              this.y,
+              this.width,
+              this.height
+          );
+          this.currentExplosionFrame++;
       } else {
-        // Draw the asteroid image
-        const obstacleImg = new Image();
-        obstacleImg.src = this.img;
-        ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
+          // Draw the selected alien image
+          const obstacleImg = new Image();
+          obstacleImg.src = this.img;
+          ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
       }
-    }
+  }
 
-      collidesWith(x, y) {
-        return (
+  collidesWith(x, y) {
+      return (
           x < this.x + this.width &&
           x + this.width > this.x &&
           y < this.y + this.height &&
           y + this.height > this.y
-        );
-      }
+      );
+  }
 
-      destroy() {
-        this.destroyed = true;
-        this.wasHit = true; // Mark the obstacle as hit
-      }
-
-    }
+  destroy() {
+      this.destroyed = true;
+      this.wasHit = true;
+  }
+}

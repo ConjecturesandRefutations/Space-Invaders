@@ -298,6 +298,23 @@ html, body, .opening-section,.end-game {
     transform-origin: top left;
 }
 
+.score{
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    z-index: 5;
+}
+
+#score{
+    max-width: 150px;
+    margin-right: 5px;
+}
+
+#score-value{
+    font-size: 50px;
+    font-weight: bold;
+}
+
 @media(max-width: 1205px){
     .selections{
         position: absolute;
@@ -313,16 +330,16 @@ html, body, .opening-section,.end-game {
     }
 }
 
-/*  @media(max-width: 912px){
+  @media(max-width: 912px){
     #canvas {
         width: 100vh; 
         height: 100vw; 
         top: 50%; 
         left: 50%;
-        transform: translate(-50%, -50%) rotate(90deg);  Rotate 90 degrees 
+        transform: translate(-50%, -50%) rotate(90deg);  /* Rotate 90 degrees  */
         transform-origin: center center;
     }
-}  */
+}  
 
 @media(max-width:750px){
     #title{

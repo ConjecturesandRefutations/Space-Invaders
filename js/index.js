@@ -38,6 +38,11 @@ const settingsButton = document.querySelector('.settings');
     settingsSection.style.display = '';
 }
 
+//Score Section
+const score = document.querySelector('.score');
+score.style.display = 'none';
+const scoreValue = document.getElementById('score-value');
+
 // Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -50,6 +55,7 @@ window.onload = () => {
   startButton.onclick = () => {
     openingSection.style.display = 'none';
     canvas.style.display = '';
+    score.style.display = '';
     startGame();
   };
 };
@@ -105,6 +111,7 @@ for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
           obstacle.destroy();
           explosion.play();
           currentGame.score++;
+          scoreValue.innerText = currentGame.score;
           obstacle.wasHit = true; // Mark the obstacle as hit
         }
 
