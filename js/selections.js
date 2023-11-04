@@ -1,5 +1,5 @@
 background.src = "./images/locationOne.jpg";
-/* let currentColor = 'shipOne'; */
+ let currentColor = 'shipOne'; 
 
 function handleLocationChange() {
   // Get the selected location radio input
@@ -23,7 +23,7 @@ function handleLocationChange() {
   }
 }
 
-/* function handleShipChange(event) {
+ function handleShipChange(event) {
   event.stopPropagation();
     currentColor = event.target.value;
-} */
+} 

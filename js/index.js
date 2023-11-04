@@ -1,6 +1,7 @@
 // Key Variables
 let background = new Image();
 let backgroundX = 0;
+let currentShip;
 
 // Opening Section
 const openingSection = document.querySelector('.opening-section');
@@ -56,6 +57,13 @@ function startGame() {
   // Clear any previous animation loop
   cancelAnimationFrame(animationID);
 
+    currentGame = new Game();
+    currentGame.rockets = [];
+
+    // Instantiate a new ship
+    currentShip = new Ship();
+    currentShip.drawShip();
+
   // Start the animation loop
   animationID = requestAnimationFrame(updateCanvas);
 }
@@ -76,6 +84,25 @@ function updateCanvas() {
   // Draw the second copy of the background image to create the continuous scroll
   ctx.drawImage(background, backgroundX + canvas.width, 0, canvas.width, canvas.height);
 
+  currentShip.drawShip(); // redraw the ship at its current position
+
+// Update and draw rockets
+for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
+  const rocket = currentGame.rockets[i];
+
+  if (rocket.isAlive) {
+    rocket.update();
+    rocket.draw();
+
+  } else {
+    // Remove dead rockets from the array
+    currentGame.rockets.splice(i, 1);
+  }
+
+}
+
   // Continue the animation loop
   animationID = requestAnimationFrame(updateCanvas);
+
 }
+
