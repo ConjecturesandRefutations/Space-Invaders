@@ -49,3 +49,40 @@ opening.addEventListener('ended', () => {
   volumeIcon.classList.remove('fa', 'fa-volume-up');
   volumeIcon.classList.add('fa', 'fa-volume-mute');
 });
+
+  //Mute Button
+  const muteButton = document.getElementById('mute-button');
+  muteButton.style.display = 'none';
+  let isSoundOn = true;
+
+  muteButton.addEventListener('click', () => {
+      if (muteButton.classList.contains('mute')) {
+          muteButton.classList.remove('mute');
+          muteButton.classList.add('play');
+          muteButton.innerHTML = '<img id="play" src="./images/play.png"/>';
+          isSoundOn = false;
+      } else {
+          muteButton.classList.remove('play');
+          muteButton.classList.add('mute');
+          muteButton.innerHTML = '<img id="mute" src="./images/mute.png"/>';
+          isSoundOn = true;
+      }
+  });
+  
+
+
+
+    function preventSpacebarClick(buttonElement) {
+      buttonElement.addEventListener("click", function (e) {
+      });
+    
+      // Prevent the spacebar from triggering a click event on the button
+      buttonElement.addEventListener("keydown", function (e) {
+        if (e.key === " ") {
+          e.preventDefault();
+        }
+      });
+    }
+    
+    // Apply the behavior to both buttons
+    preventSpacebarClick(muteButton);

@@ -119,7 +119,9 @@ class Ship {
       const rocket = new Rocket(this.x, this.y, this.angle);
       currentGame.rockets.push(rocket);
       this.rocketFired = true; // Set the flag to true
-      laser.play();
+      if(isSoundOn){
+        laser.play();
+        }
     }
   }
 }

@@ -125,11 +125,14 @@ html, body, .opening-section,.end-game {
 }
 
 #mute-button{
+    position: absolute;
     text-decoration: none;
     margin-bottom: 5px;
     background-color: transparent;
     padding: none;
     cursor: pointer;
+    left: 20px;
+    top: 20px;
 }
 
 #mute{
@@ -443,10 +446,6 @@ html, body, .opening-section,.end-game {
     }
     #restart{
         max-width: 250px;
-    }
-    .score{
-        bottom: 50%;
-        transform: translate(0,50%);
     }
 }
 
