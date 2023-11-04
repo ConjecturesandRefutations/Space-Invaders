@@ -3,6 +3,9 @@ let background = new Image();
 let backgroundX = 0;
 let currentShip;
 let obstaclesFrequency = 0; //Logic for generating obstacles
+let obstacleSpeed = 0.2;
+let startTime = 0;
+divisor = 50;
 
 // Opening Section
 const openingSection = document.querySelector('.opening-section');
@@ -77,6 +80,9 @@ function startGame() {
 
 function updateCanvas() {
 
+  const currentTime = Date.now();
+  const elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000); // Calculate elapsed time in seconds
+
   ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
 
   // Scroll the background to the left
@@ -125,11 +131,11 @@ for (let i = currentGame.rockets.length - 1; i >= 0; i--) {
   }
 }
   
-if (obstaclesFrequency % 60 === 1) {
+if (obstaclesFrequency % divisor === 1) {
   // Generate a new obstacle at the top of the canvas
   const randomObstacleWidth = 30
   const randomObstacleHeight = 30
-  const randomObstacleX = 0;
+  const randomObstacleX = Math.floor(Math.random() * canvas.width); // Randomize X position
   const randomObstacleY = -randomObstacleHeight;
 
   const newObstacle = new Obstacle(
@@ -140,11 +146,22 @@ if (obstaclesFrequency % 60 === 1) {
   );
 
   newObstacle.horizontalSpeed = 3; // Initial horizontal speed
+    
   currentGame.obstacles.push(newObstacle);
+   
 }
 
 for (let i = 0; i < currentGame.obstacles.length; i++) {
   const obstacle = currentGame.obstacles[i];
+
+     // Occasionally make the obstacle shoot a downward bullet
+     if (Math.random() < 0.2) {
+      obstacle.shootDownwardBullet();
+    }
+  // Check if it's time for the obstacle to shoot a bullet
+  if (obstacle.shootBullet) {
+    obstacle.updateBullet();
+  }
 
   if (obstacle.wasHit && obstacle.currentExplosionFrame >= obstacle.explosionFrames) {
     // Remove obstacles after the explosion animation is finished
@@ -154,7 +171,7 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
   }
 
   // Move obstacles downwards
-  obstacle.y += 0.2;
+  obstacle.y += obstacleSpeed;
 
   // Move obstacles horizontally with a reverse direction when hitting the canvas boundaries
   obstacle.x += obstacle.horizontalSpeed;
@@ -162,12 +179,24 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
     obstacle.horizontalSpeed *= -1; // Reverse the horizontal direction
   }
 
+  if (elapsedTimeInSeconds >= 20) { // Increase level every 20 seconds
+    obstacle.horizontalSpeed++;
+  }
+
   // Logic for removing obstacles
   if (obstacle.y >= canvas.height) {
     currentGame.obstacles.splice(i, 1); // remove that obstacle from the array
   }
 }
-console.log(currentGame.obstacles.length)
+
+if (elapsedTimeInSeconds >= 20) { // Increase level every 20 seconds
+  obstacleSpeed += 0.1;
+  currentGame.level++;
+  if (divisor > 2) {
+      divisor -= 4;
+  }
+  startTime = currentTime; // Reset the start time
+}
   // Continue the animation loop
   animationID = requestAnimationFrame(updateCanvas);
 
