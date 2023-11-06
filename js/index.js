@@ -6,50 +6,7 @@ let obstaclesFrequency = 0; //Logic for generating obstacles
 let obstacleSpeed = 0.2;
 let startTime = 0;
 divisor = 50;
-
-// Opening Section
-const openingSection = document.querySelector('.opening-section');
-
-//Instructions Section
-const instructionSection = document.querySelector('.instruction-section');
-instructionSection.style.display = 'none';
-//Instruction Button
-const instructionButton = document.querySelector('.instruction');
-  instructionButton.onclick = () => {
-    openingSection.style.display = 'none';
-    instructionSection.style.display = '';
-}
-
-// Back Button
-const backButton = document.querySelectorAll('.back'); 
-
-for (let i = 0; i < backButton.length; i++) {
-  backButton[i].addEventListener('click', () => {
-    instructionSection.style.display = 'none';
-    settingsSection.style.display = 'none';
-    openingSection.style.display = '';
-  });
-}
-
-//Instructions Section
-const settingsSection = document.querySelector('.setup-section');
-settingsSection.style.display = 'none';
-//settings Button
-const settingsButton = document.querySelector('.settings');
-  settingsButton.onclick = () => {
-    openingSection.style.display = 'none';
-    settingsSection.style.display = '';
-}
-
-//Score Section
-const score = document.querySelector('.score');
-score.style.display = 'none';
-const scoreValue = document.getElementById('score-value');
-
-//Lives Section
-const lives = document.querySelector('.lives');
-lives.style.display = 'none';
-const livesValue = document.getElementById('lives-value');
+let gameOver = false; 
 
 // Canvas
 const canvas = document.getElementById('canvas');
@@ -70,6 +27,7 @@ window.onload = () => {
 };
 
 function startGame() {
+  gameOver = false;
   // Clear any previous animation loop
     cancelAnimationFrame(animationID);
 
@@ -87,6 +45,11 @@ function startGame() {
 }
 
 function updateCanvas() {
+
+  if (gameOver) {
+    // Game over, do not continue the animation loop
+    return;
+  }
 
   const currentTime = Date.now();
   const elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000); // Calculate elapsed time in seconds
@@ -180,14 +143,16 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
 
     // Decrement lives
     currentGame.lives--;
-    explosion.play();
+    if(isSoundOn){
+      crash.play();
+      }
 
     // Update the displayed lives count
     livesValue.innerText = currentGame.lives;
 
     if (currentGame.lives <= 0) {
       // Game over logic (handle game over state as needed)
-      gameOver();
+      endGame();
     } else {
       // Ship is hit, change its state to exploded
       currentShip.explode();
@@ -214,11 +179,7 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
   if (obstacle.x + obstacle.width >= canvas.width || obstacle.x <= 0) {
     obstacle.horizontalSpeed *= -1; // Reverse the horizontal direction
   }
-
-  if (elapsedTimeInSeconds >= 20) { // Increase level every 20 seconds
-    obstacle.horizontalSpeed++;
-  }
-
+  
   // Logic for removing obstacles
   if (obstacle.y >= canvas.height) {
     currentGame.obstacles.splice(i, 1); // remove that obstacle from the array
@@ -238,3 +199,22 @@ if (elapsedTimeInSeconds >= 20) { // Increase level every 20 seconds
 
 }
 
+function endGame(){
+  gameOver = true;
+  currentShip.x = canvas.width/2;
+  currentShip.y = canvas.height-200;
+  GameOver.style.display = '';
+  lives.style.display = 'none';
+  canvas.style.display = 'none';
+ }
+
+ function resetScore(){
+  currentGame.score = 0;
+  currentGame.lives = 3;
+  divisor = 60;
+  obstacleSpeed = 0.2;
+  obstaclesFrequency = 0;
+  scoreValue.innerText = currentGame.score;
+  livesValue.innerText = currentGame.lives
+  lives.style.display = '';
+ }

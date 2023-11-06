@@ -18,11 +18,18 @@ html, body, .opening-section,.end-game {
     left: 50%;
     top: 30%;
     transform: translate(-50%);
-    width: 700px;
 }
 
 #title-small{
     display: none;
+}
+
+#title{
+    width: 700px;
+}
+
+#GameOver{
+    width: 500px;
 }
 
 .instruction-section{
@@ -53,6 +60,17 @@ html, body, .opening-section,.end-game {
     transform: translate(-50%);
     cursor: pointer;
     max-width: 350px;
+}
+
+#restart{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%);
+    cursor: pointer;
+    max-width: 250px;
+    border: 2px solid;
+    border-color: grey black black grey;
 }
 
 .audio{
