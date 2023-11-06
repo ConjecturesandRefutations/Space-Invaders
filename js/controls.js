@@ -10,6 +10,7 @@ class Ship {
     this.rightButtonDown = false;
     this.throttleDelay = 100; // Keyboard Throttle Delay (Milliseconds)
     this.rocketFired = false;
+    this.isExploded = false;
 
     // Select the mobile-controls buttons
     this.leftButton = document.getElementById('left-button');
@@ -41,6 +42,9 @@ class Ship {
     const shipImg = new Image();
     shipImg.src = this.img;
 
+    const explosionImage = new Image();
+    explosionImage.src = './images/explosion.png'; 
+
     // Calculate the angle of rotation based on the ship's current direction
     let angle = this.angle;
 
@@ -48,7 +52,13 @@ class Ship {
     ctx.save();
     ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
     ctx.rotate(angle);
-    ctx.drawImage(shipImg, -this.width / 2, -this.height / 2, this.width, this.height);
+    if (this.isExploded) {
+      // Display the explosion image
+      ctx.drawImage(explosionImage, -this.width / 2, -this.height / 2, this.width, this.height);
+    } else {
+      // Draw the ship image
+      ctx.drawImage(shipImg, -this.width / 2, -this.height / 2, this.width, this.height); 
+    }
     ctx.restore();
 
     // Update the ship's current direction
@@ -123,6 +133,13 @@ class Ship {
         laser.play();
         }
     }
+  }
+
+  explode() {
+    this.isExploded = true;
+  }
+  reset() {
+    this.isExploded = false;
   }
 }
 

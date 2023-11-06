@@ -257,12 +257,19 @@ html, body, .opening-section,.end-game {
     z-index: 5;
 }
 
-#score{
+.lives{
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    z-index: 5;
+}
+
+#score,#lives{
     max-width: 150px;
     margin-right: 5px;
 }
 
-#score-value{
+#score-value,#lives-value{
     font-size: 50px;
     font-weight: bold;
 }

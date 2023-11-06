@@ -46,6 +46,11 @@ const score = document.querySelector('.score');
 score.style.display = 'none';
 const scoreValue = document.getElementById('score-value');
 
+//Lives Section
+const lives = document.querySelector('.lives');
+lives.style.display = 'none';
+const livesValue = document.getElementById('lives-value');
+
 // Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -59,6 +64,7 @@ window.onload = () => {
     openingSection.style.display = 'none';
     canvas.style.display = '';
     score.style.display = '';
+    lives.style.display = '';
     startGame();
   };
 };
@@ -71,7 +77,6 @@ function startGame() {
     muteButton.style.display = '';
 
     currentGame = new Game();
-    currentGame.rockets = [];
 
     // Instantiate a new ship
     currentShip = new Ship();
@@ -166,6 +171,32 @@ for (let i = 0; i < currentGame.obstacles.length; i++) {
   // Check if it's time for the obstacle to shoot a bullet
   if (obstacle.shootBullet) {
     obstacle.updateBullet();
+  }
+
+  if (obstacle.collidesWithShip(currentShip.x, currentShip.y, currentShip.width, currentShip.height)) {
+    // Remove the obstacle's bullet from the game
+    obstacle.shootBullet = false;
+    obstacle.bulletY = obstacle.y + obstacle.height; // Reset bullet position
+
+    // Decrement lives
+    currentGame.lives--;
+    explosion.play();
+
+    // Update the displayed lives count
+    livesValue.innerText = currentGame.lives;
+
+    if (currentGame.lives <= 0) {
+      // Game over logic (handle game over state as needed)
+      gameOver();
+    } else {
+      // Ship is hit, change its state to exploded
+      currentShip.explode();
+      
+      // Set a timer to reset the ship's state after a certain duration
+      setTimeout(() => {
+        currentShip.reset();
+      }, 1000); // Adjust the duration as needed (1000 milliseconds = 1 second)
+    }
   }
 
   if (obstacle.wasHit && obstacle.currentExplosionFrame >= obstacle.explosionFrames) {

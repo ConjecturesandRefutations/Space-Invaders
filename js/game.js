@@ -7,5 +7,6 @@ class Game {
         this.level = 1;
         this.rockets = [];
         this.score = 0;
+        this.lives = 3;
     }
 }

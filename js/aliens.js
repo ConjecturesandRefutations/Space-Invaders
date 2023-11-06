@@ -25,8 +25,8 @@ class Obstacle {
       this.explosionImage.src = './images/explosion.png';
 
       // Bullet properties
-    this.bulletWidth = 5;
-    this.bulletHeight = 10;
+    this.bulletWidth = 10;
+    this.bulletHeight = 15;
     this.bulletX = this.x + this.width / 2 - this.bulletWidth / 2;
     this.bulletY = this.y + this.height;
     this.bulletSpeed = 3;
@@ -83,16 +83,13 @@ class Obstacle {
       this.initialX = this.x + this.width / 2 - this.bulletWidth / 2;
     }
   }
-  
-  
-   
 
   updateBullet() {
     if (this.shootBullet) {
       this.bulletY += this.bulletSpeed;
   
       // Draw the bullet using the initial X position
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = 'red';
       ctx.fillRect(this.initialX, this.bulletY, this.bulletWidth, this.bulletHeight);
   
       // Check if the bullet hits the bottom of the canvas
@@ -102,5 +99,15 @@ class Obstacle {
       }
     }
   }
+
+collidesWithShip(shipX, shipY, shipWidth, shipHeight) {
+  return (
+    this.bulletX < shipX + shipWidth &&
+    this.bulletX + this.bulletWidth > shipX &&
+    this.bulletY < shipY + shipHeight &&
+    this.bulletY + this.bulletHeight > shipY
+  );
+}
+
     
 }
